@@ -170,7 +170,6 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-
 /**
  * Render Target
  */
@@ -184,12 +183,6 @@ const renderTarget1 = new THREE.WebGLRenderTarget(sizes.width, sizes.height, {
     stencilBuffer: false
 })
 
-const composer1 = new EffectComposer(renderer, renderTarget1)
-composer1.setSize(window.innerWidth, window.innerHeight)
-composer1.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
-composer1.addPass(scene1Pass)
-
 const renderTarget2 = new THREE.WebGLRenderTarget(sizes.width, sizes.height, {
     samples: window.devicePixelRatio === 1 ? 2 : 0,
     minFilter: THREE.LinearFilter,
@@ -197,12 +190,6 @@ const renderTarget2 = new THREE.WebGLRenderTarget(sizes.width, sizes.height, {
     format: THREE.RGBAFormat,
     stencilBuffer: false
 })
-
-const composer2 = new EffectComposer(renderer, renderTarget2)
-composer2.setSize(window.innerWidth, window.innerHeight)
-composer2.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
-composer2.addPass(scene2Pass)
 
 const renderPlaneGeometry = new THREE.PlaneGeometry(2, 2)
 const renderPlaneMaterial = new THREE.ShaderMaterial({
