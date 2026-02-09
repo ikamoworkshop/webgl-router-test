@@ -28,7 +28,10 @@ void main(){
     vec4 fromTexture = texture2D(uFromTexture, newUv);
     vec4 toTexture = texture2D(uToTexture, newUv);
 
-    vec4 color = mix(toTexture, fromTexture, step(uTransition, vUv.y));
+    // vec4 color = mix(fromTexture, toTexture, uTransition);
+    // vec4 color = mix(toTexture, fromTexture, step(uTransition, vUv.y));
+	// vec4 color = mix(toTexture, fromTexture, step(uTransition, 0.5 * ( vUv.y + vUv.x )));
+	vec4 color = mix(toTexture, fromTexture, smoothstep(uTransition, uTransition + 0.1, ( vUv.x + vUv.y ) / 2.));
 
     gl_FragColor = color;
 	// gl_FragColor = vec4(1.0, 0.1, 0.1, 1.0);
